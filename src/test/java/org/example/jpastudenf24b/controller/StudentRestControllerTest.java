@@ -17,7 +17,9 @@ class StudentRestControllerTest {
     @Test
     void testStud() {
         Student s1 = new Student();
+        s1.setName("testxx");
         studentRepository.save(s1);
+        //s1.setId(0);
         studentRepository.save(s1);
         assertEquals(2, studentRepository.findAll().size());
     }
