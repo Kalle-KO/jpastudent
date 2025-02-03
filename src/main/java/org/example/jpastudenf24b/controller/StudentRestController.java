@@ -41,8 +41,8 @@ public class StudentRestController {
         }
     }
 
-    @PutMapping("/student")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+    @PutMapping("/studentsimpel")
+    public ResponseEntity<Student> updateStudentSimpel(@RequestBody Student student) {
         Optional<Student> orgStudent = studentRepository.findById(student.getId());
         if (orgStudent.isPresent()) {
             studentRepository.save(student);
@@ -50,13 +50,29 @@ public class StudentRestController {
         } else {
             return new ResponseEntity<>(new Student(),HttpStatus.NOT_FOUND);
         }
+    }
 
+    @PutMapping("/student/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable int id,@RequestBody Student student) {
+        Optional<Student> orgStudent = studentRepository.findById(id);
+        if (orgStudent.isPresent()) {
+            student.setId(id);
+            studentRepository.save(student);
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new Student(),HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/student/{id}")
     public ResponseEntity<Student> deleteStudent(@PathVariable int id) {
         Optional<Student> orgStudent = studentRepository.findById(id);
-
+        if (orgStudent.isPresent()) {
+            studentRepository.delete(orgStudent.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 
