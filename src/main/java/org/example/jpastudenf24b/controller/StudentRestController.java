@@ -24,6 +24,16 @@ public class StudentRestController {
         return "Du er i roden";
     }
 
+    @GetMapping("/hellox")
+    public String hellox() {
+        return "Hello from Student";
+    }
+
+    @GetMapping("/hello/{sleep}")
+    public String hello(@PathVariable int sleep) throws InterruptedException {
+        Thread.sleep(sleep);
+        return "Hello World";
+    }
 
     @GetMapping("/students")
     public List<Student> students() {
