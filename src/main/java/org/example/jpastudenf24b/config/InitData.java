@@ -4,10 +4,8 @@ import org.example.jpastudenf24b.model.Student;
 import org.example.jpastudenf24b.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
